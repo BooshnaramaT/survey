@@ -69,7 +69,6 @@ class AddusersController extends Controller
         $datas->lname=$lname;
         $datas->email=$email;
         $datas->demographic_data=$serialized_data;
-        $datas->serialized='1';
         $datas->save();
 
         return redirect()->action('AddusersController@index');
