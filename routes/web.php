@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('addusers','AddusersController');
+Route::post('importExcel', 'ImportusersController@importExcel');
