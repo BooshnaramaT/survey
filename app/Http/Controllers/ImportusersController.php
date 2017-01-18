@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Excel;
-
 use Illuminate\Support\Facades\DB;
+
 class ImportusersController extends Controller
 {
     public function importExcel()
@@ -22,11 +22,9 @@ class ImportusersController extends Controller
         /*Reading File Datas*/
 				foreach ($data as $value) {
           /*Explode & serialize demographic_data*/
-          $datas=DB::table('users')->select('email')->where('email',$value->email)->get();
-          echo count($datas);
-          $explode_coma=explode('|',$value->demographic_data);
+          $explode_data=explode('|',$value->demographic_data);
           $data=array();
-          foreach ($explode_coma as  $result) {
+          foreach ($explode_data as  $result) {
               $values=explode(':',$result);
               $data[$values[0]]=$values[1];
           }

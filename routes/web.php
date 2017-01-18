@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 Route::resource('addusers','AddusersController');
 Route::post('importExcel', 'ImportusersController@importExcel');
+
+Route::get('importQuestion','QuestionsImportController@importQuestion');
+Route::post('storeQues', 'QuestionsImportController@stoteQuestions');
