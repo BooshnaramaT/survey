@@ -20,7 +20,6 @@
             <td>
               <table class="table table-bordered">
                 @foreach(unserialize($result->demographic_data) as $key=>$values)
-
                   <tr>
                     <td><strong>{{$key}}</strong></td>
                     <td>{{$values}}</td>
@@ -42,6 +41,5 @@
   @endif
     </table>
     {!! $datas->render() !!}
-    {{($datas->currentpage()-1) * $datas->perpage() + $datas->count()}}
   </div>
 </div>

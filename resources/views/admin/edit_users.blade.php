@@ -1,6 +1,5 @@
 @extends('layouts.header')
-
-
+<script src="/js/jquery-1.10.2.js"></script>
 
 <div class="container">
   <div class="col-sm-12">
