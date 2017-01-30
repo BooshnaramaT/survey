@@ -2,6 +2,19 @@
 <div class="container">
   <div class="col-sm-12">
     <a href="{{ route('addusers.create') }}" class="btn btn-success pull-right">Add New</a>
+    @if(Session::get('msg'))
+      <div class="alert alert-success message">{!! Session::has('msg') ? Session::get("msg") : '' !!}</div>
+    @endif
+    <div class="col-sm-">
+      <form class="form-horizontal" action="{{ URL::to('searchUsers') }}" method="post">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+        <div class="form-group col-sm-3">
+        <input type="text" name="search" value=""class="form-control pull-left" placeholder="First Name,Last Name,Email">
+          <input type="submit" name="name" class="btn btn-info pull-right" value="Search">
+        </div>
+      </form>
+    </div>
     <table class="table table-bordered">
       <th>S.No</th>
       <th>First Name</th>
@@ -13,6 +26,7 @@
   <?php $s_no=1; ?>
       @foreach($datas as $result)
           <tr>
+
             <td>{{$s_no}}</td>
             <td>{{$result->fname}}</td>
             <td>{{$result->lname}}</td>
@@ -28,11 +42,17 @@
               </table>
             </td>
             <td>
+              @if($result->fname =="admin")
+                <a href="{{ route('addusers.edit',$result->id) }}" class="btn btn-info">Edit</a>
+              @else
               <a href="{{ route('addusers.edit',$result->id) }}" class="btn btn-info">Edit</a>
+              <a href="{{URL::action('ResendaccessController@ResendAccess').'?user_id='.$result->id}}" class="btn btn-info">Resend Access</a>
                 {!! Form::open(['method' => 'DELETE','route' => ['addusers.destroy', $result->id]]) !!}
                   {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                 {!! Form::close() !!}
+              @endif
             </td>
+
           </tr>
     <?php $s_no++; ?>
       @endforeach

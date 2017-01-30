@@ -16,7 +16,12 @@ Route::get('/', function () {
 });
 
 Route::resource('addusers','AddusersController');
+
+
+Route::post('searchUsers', 'searchController@searchUsers');
+
 Route::post('importExcel', 'ImportusersController@importExcel');
 
 Route::get('importQuestion','QuestionsImportController@importQuestion');
 Route::post('storeQues', 'QuestionsImportController@stoteQuestions');
+Route::get('resendacess','ResendaccessController@ResendAccess');

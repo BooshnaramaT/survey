@@ -16,9 +16,9 @@ class AddusersController extends Controller
     {
         /*Getting All values form Database*/
          $data = addusers::all();
-         $datas = addusers::paginate(2);
+         $datas = addusers::paginate(5);
 
-        return View('admin.userindex', compact('datas'))->with('i', ($request->input('name', 1) - 1) * 5);;
+        return View('admin.userindex', compact('datas'))->with('i', ($request->input('name', 1) - 1) * 5);
 
     }
 
@@ -80,9 +80,9 @@ class AddusersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        echo "Test";
     }
 
     /**
