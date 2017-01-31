@@ -1,6 +1,8 @@
 @extends('layouts.header')
+<title>User add Section @yield('title')</title>
+@section('content')
 <div class="container">
-  <div class="col-sm-6 pull-left manually_add well">
+  <div class="col-sm-5 pull-left manually_add well">
     <h1>Add New Participants</h1>
     @if (count($errors) > 0)
        <div class="alert alert-danger">
@@ -35,7 +37,7 @@
 
    </div>
    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
    </div>
       {!! Form::close() !!}
   </div>
@@ -60,12 +62,13 @@
     <form action="{{ URL::to('importExcel') }}" class="form-horizontal" method="POST" id="import_process" enctype="multipart/form-data">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="form-group">
-            <input type="file" class="form-control filestyle" name="import_file" id="upload" accept=".xls, .xlsx"/>
+            <input type="file" class="form-control filestyle" placeholder="File type:xls,xlsx" name="import_file" id="upload" accept=".xls, .xlsx"/>
       </div>
       <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="name" value="Import File" id="file"  onchange="checkfile(this);" >
+        <input type="submit" class="btn btn-success" name="name" value="Import File" id="file"  onchange="checkfile(this);" >
       </div>
     </form>
 </div>
 
 </div>
+@endsection

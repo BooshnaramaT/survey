@@ -19,8 +19,9 @@ class searchController extends Controller
           $datas = addusers::where('fname'  , 'like', '%' . $content. '%')
                    ->orwhere('lname'  , 'like', '%' .  $content. '%')
                    ->orwhere('email'  , 'like', '%' .  $content. '%')
-                   ->paginate(3);
+                   ->paginate(5);
         }
+
         return View('admin.userindex', compact('datas'))->with('i', ($request->input('name', 1) - 1) * 5);
 
         // $products = $datas->paginate(3); //get 50 data per page

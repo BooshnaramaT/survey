@@ -21,35 +21,28 @@ class ImportusersController extends Controller
 
 			if(!empty($data) && $data->count()){
 
-        $i=1;
+        $i=2;
         $message=array();
 				foreach ($data as $value) {
           if(isset($value['first_name']) && isset($value['last_name']) && isset($value['email']) && isset($value['demographic_data']))
           {
           $datas=DB::table('users')->select('email')->where('email',$value->email)->get();
 
-          if($value->first_name=="")
-          {
-           $message[]="First name Column is null Or not Found line @ $i";
-          }
-          elseif ($value->first_name=="first_name") {
-            $message[]= "first name is not found";
-          }
-          elseif ($value->first_name=="") {
-            $message[]="First Name Column is Null plz check your spreed sheet line @ $i";
+          if ($value->first_name=="") {
+            $error[]="First Name Column is Null plz check your spreed sheet line @ $i";
           }
           elseif ($value->email=="") {
-            $message[]="Email Column is Null plz check your spreed sheet line @ $i";
+            $error[]="Email Column is Null plz check your spreed sheet line @ $i";
           }
           elseif ($value->demographic_data=="") {
-            $message[]="Demographic data Column is Null plz check your spreed sheet line @ $i";
+            $error[]="Demographic data Column is Null plz check your spreed sheet line @ $i";
           }
           elseif (filter_var($value->email,FILTER_VALIDATE_EMAIL) === false) {
-              $message[]= "($value->email) is not a valid email address  line @ $i";
+              $error[]= "($value->email) is not a valid email address  line @ $i";
           }
           elseif(count($datas)>=1)
           {
-            $message[]="This email id is already exists ($value->email)  line @ $i";
+            $error[]="This email id is already exists ($value->email)  line @ $i";
           }
           else
           {
@@ -70,20 +63,18 @@ class ImportusersController extends Controller
         }
         $i++;
 				}
-        if(isset($insert)){
-          /*Insert datas into Database*/
-          DB::table('users')->insert($insert);
-        }
-
 			}
 		}
-    session()->flash('msg', $message);
-    if($message=="Datas imported")
-		{
-      return redirect()->action('AddusersController@index');
-    }
-    else {
+
+
+    if (isset($error)) {
+      session()->flash('msg', $error);
       return redirect()->back();
     }
+    else {
+      DB::table('users')->insert($insert);
+      return redirect()->action('AddusersController@index');
+    }
+
 	}
 }

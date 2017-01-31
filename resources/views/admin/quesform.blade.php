@@ -1,8 +1,10 @@
 @extends('layouts.header')
+<title>Question Section @yield('title')</title>
 
+@section('content')
 <div class="container">
   <div class="row">
-    <div class="col-sm-8 col-md-8 col-lg-8 well">
+    <div class="col-sm-8 col-sm-offset-2 well" id="ques_form">
       <h1>Bulk Import Quesitons</h1>
       @if(Session::get('msg'))
         @if(Session::get('msg')=="Sucessfull datas imported.")
@@ -28,9 +30,10 @@
               <input type="file" class="form-control filestyle" name="import_file" id="upload" accept=".xls, .xlsx"/>
         </div>
         <div class="form-group">
-          <input type="submit" class="btn btn-primary" name="name" value="Import File" id="file">
+          <input type="submit" class="btn btn-success" name="name" value="Import File" id="file">
         </div>
     </form>
     </div>
   </div>
 </div>
+@endsection

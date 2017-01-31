@@ -73,7 +73,6 @@ $(document).ready(function() {
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-
               email: {
                   validators: {
                     notEmpty: {
@@ -85,13 +84,6 @@ $(document).ready(function() {
                   }
               },
                 fname: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The Field required and cannot be empty'
-                        }
-                    }
-                },
-                lname: {
                     validators: {
                         notEmpty: {
                             message: 'The Field required and cannot be empty'
@@ -159,4 +151,9 @@ $(document).ready(function() {
                 }
             }
         });
+});
+
+/*Tooltip*/
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
 });

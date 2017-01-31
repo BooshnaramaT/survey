@@ -40,3 +40,21 @@ small{
 #file_upload{
   float: right;
 }
+#ques_form
+{
+  padding:0px !important;
+}
+#import_process {
+  padding: 30px;
+}
+#del_form {
+  float: right;
+  width: 53%;
+}
+.search_user input{
+  width: 75%;
+  border-radius: 0px;
+}
+.search_user button {
+  border-radius: 0px; 
+}
