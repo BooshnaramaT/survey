@@ -53,13 +53,12 @@ class ImportusersController extends Controller
                 $data[$values[0]]=$values[1];
             }
             $serialized_data=serialize($data);
-
             $insert[] = ['fname' => $value->first_name, 'lname' => $value->last_name, 'email' => $value->email,'demographic_data'=>$serialized_data];
             $message= "Datas imported";
           }
         }
         else {
-          $message="Heading Mismatch line @ 1 . (first_name,last_name,email,demographic_data) Plz enter this format.";
+          $error="Heading Mismatch line @ 1 . (first_name,last_name,email,demographic_data) Plz enter this format.";
         }
         $i++;
 				}

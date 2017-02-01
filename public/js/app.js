@@ -15,6 +15,7 @@ $(document).ready(function() {
   $('#import_process')
       .bootstrapValidator({
           framework: 'bootstrap',
+
           fields: {
             import_file: {
                 validators: {
@@ -93,11 +94,18 @@ $(document).ready(function() {
                 'demographic_data[]': {
                     validators: {
                         notEmpty: {
-                            message: 'The Field required and cannot be empty'
+                            message: 'The Field required and cannot be empty',
+
+
                         },
                         stringLength: {
                             max: 100,
                             message: 'The option must be less than 100 characters long'
+                        },
+                        regexp: {
+                            enabled: true,
+                            regexp: /^[a-zA-Z0-9:_+()\s&nbsp;\s]+$/,
+                            message: 'The full name can only consist of alphabetical, number, and space'
                         }
                     }
                 }

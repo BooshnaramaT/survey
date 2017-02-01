@@ -1,7 +1,7 @@
 @extends('layouts.header')
+<!-- <title>User index @yield('title')</title> -->
 
 @section('content')
-<title>User index @yield('title')</title>
 <script type="text/javascript">
 
   function ConfirmDelete()
@@ -27,7 +27,6 @@
     <div class="">
       <form class="form-horizontal" action="{{ URL::to('searchUsers') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
         <div class="form-group col-sm-5 search_user">
         <input type="text" name="search" value="" class="form-control pull-left" placeholder="First Name,Last Name,Email">
           <button type="submit" name="button" class="btn btn-info pull-left"><span class="fa fa-search"></span>&nbsp;Search</button>
@@ -43,10 +42,10 @@
       <th>Actions</th>
   @if(count($datas)!=0)
   <?php $s_no=1; ?>
-      @foreach($datas as $result)
+      @foreach($datas as $key=>$result)
           <tr>
 
-            <td>{{$s_no}}</td>
+            <td>{{$key+1}}</td>
             <td>{{$result->fname}}</td>
             <td>{{$result->lname}}</td>
             <td>{{$result->email}}</td>
@@ -79,7 +78,8 @@
         <tr><td colspan="4" class="text-center">No Results Found</td></tr>
   @endif
     </table>
-    {!! $datas->appends(Input::except('page'))->render() !!}
+    {!! $datas->render() !!}
+
   </div>
 </div>
 @endsection

@@ -22,13 +22,7 @@ class searchController extends Controller
                    ->paginate(5);
         }
 
-        return View('admin.userindex', compact('datas'))->with('i', ($request->input('name', 1) - 1) * 5);
+        return View('admin.userindex', compact('datas'));
 
-        // $products = $datas->paginate(3); //get 50 data per page
-        // $products->setPath(''); //in case the page generate '/?' link.
-        // $pagination = $products->appends(array('search_content' => $request->get('search')));
-        // //this will append the url with your search terms
-        //
-        // return view('admin.userindex')->with('datas', $products)->with('pagination', $pagination);
     }
 }

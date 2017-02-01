@@ -19,6 +19,7 @@ Route::resource('addusers','AddusersController');
 
 
 Route::post('searchUsers', 'searchController@searchUsers');
+Route::get('searchUsers', 'searchController@searchUsers');
 
 Route::post('importExcel', 'ImportusersController@importExcel');
 
